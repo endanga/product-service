@@ -12,8 +12,8 @@ import (
 
 	"github.com/endanga/product-service/database"
 	"github.com/endanga/product-service/handlers"
-
 	"github.com/go-openapi/runtime/middleware"
+
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
 )

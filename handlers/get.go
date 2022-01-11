@@ -8,7 +8,7 @@ import (
 	"github.com/endanga/product-service/repository"
 )
 
-// swagger:route GET /products product_repo listProducts
+// swagger:route GET /products?limit=10&offset=0 product_repo listProducts
 // Return a list of products from the database
 // responses:
 //	200: productsResponse

@@ -9,43 +9,60 @@ definitions:
         type: string
         x-go-name: Message
     type: object
-    x-go-package: example/test/handlers
+    x-go-package: github.com/endanga/product-service/handlers
   Product:
     description: Product defines the structure for an API product
     properties:
-      description:
-        description: the description for this poduct
-        maxLength: 10000
+      brand:
+        description: the brand for the product
+        maxLength: 255
         type: string
-        x-go-name: Description
+        x-go-name: Brand
+      code:
+        description: the code for this poduct
+        maxLength: 255
+        type: string
+        x-go-name: Code
       id:
         description: the id for the product
         format: int64
         minimum: 1
         type: integer
         x-go-name: ID
+      max_count:
+        format: int64
+        type: integer
+        x-go-name: Max_Count
       name:
-        description: the name for this poduct
+        description: the description for this poduct
         maxLength: 255
         type: string
         x-go-name: Name
-      price:
-        description: the price for the product
-        format: float
-        minimum: 0.01
+      retail_price:
+        description: the retail_price for the product
+        format: double
+        maximum: 99999999
+        minimum: 1000
         type: number
-        x-go-name: Price
-      sku:
-        description: the SKU for the product
-        pattern: ^[0-9]{4}$
+        x-go-name: Retail_Price
+      status:
+        description: the status for the product
         type: string
-        x-go-name: SKU
+        x-go-name: Status
+      sub_category:
+        description: the sub_category for the product
+        maxLength: 255
+        type: string
+        x-go-name: Sub_Category
     required:
+    - code
     - name
-    - price
-    - sku
+    - sub_category
+    - brand
+    - retail_price
+    - status
     type: object
-    x-go-package: example/test/data
+    x-go-package: github.com/endanga/product-service/data
   ValidationError:
     description: ValidationError is a collection of validation error messages
     properties:
@@ -55,13 +72,13 @@ definitions:
         type: array
         x-go-name: Messages
     type: object
-    x-go-package: example/test/handlers
+    x-go-package: github.com/endanga/product-service/handlers
 info:
   description: Documentation for Product API
   title: Sepecification of Product API
   version: 1.0.0
 paths:
-  /products:
+  /products?limit=10&offset=0:
     get:
       description: Return a list of products from the database
       operationId: listProducts
@@ -83,10 +100,6 @@ responses:
       $ref: '#/definitions/ValidationError'
   noContentResponse:
     description: No content is returned by this API endpoint
-  productResponse:
-    description: Data structure representing a single product
-    schema:
-      $ref: '#/definitions/Product'
   productsResponse:
     description: A list of products
     schema:

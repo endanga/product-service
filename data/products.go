@@ -24,7 +24,7 @@ type Product struct {
 	// the sub_category for the product
 	//
 	// required: true
-	// min: 0.01
+	// max length: 255
 	Sub_Category string `json:"sub_category" validate:"required"`
 
 	// the brand for the product
@@ -43,7 +43,7 @@ type Product struct {
 	// the status for the product
 	//
 	// required: true
-	// pattern: y/
+	// value: y
 	Status string `json:"status" validate:"required"`
 
 	Max_Count int `json:"max_count"`

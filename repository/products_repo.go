@@ -28,7 +28,7 @@ func GetProductList(limit int, offset int) data.Products {
 	// defer db.Close()
 	for result.Next() {
 		p := &data.Product{}
-		err = result.Scan(&p.ID, &p.Name, &p.Code, &p.Sub_Category, &p.Brand, &p.Retail_Price, &p.Status)
+		err = result.Scan(&p.ID, &p.Code, &p.Name, &p.Sub_Category, &p.Brand, &p.Retail_Price, &p.Status)
 		if err != nil {
 			panic(err.Error())
 		}
